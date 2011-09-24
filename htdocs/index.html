@@ -4,11 +4,18 @@
 		<meta charset="utf-8">
 		<title>Magic: The Gathering</title>
 		<link href="css/mtg.css" rel="stylesheet" type="text/css">
+		<script src="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
 		<input id="card_name" type="text">
 		<button id="make">Make card</button>
-
+		<script>
+			var socket = io.connect("http://localhost");
+			socket.on('news', function (data) {
+				console.log(data);
+				socket.emit('my other event', { my: 'data' });
+			});
+		</script>
 		<script src="js/mtg.js"></script>
 		<script src="js/Card.js"></script>
 	</body>
